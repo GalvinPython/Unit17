@@ -27,8 +27,6 @@ import {
 	SearchIcon,
 } from "@/components/icons";
 
-import { Logo } from "@/components/icons";
-
 export const Navbar = () => {
 	const searchInput = (
 		<Input
@@ -56,8 +54,7 @@ export const Navbar = () => {
 			<NavbarContent className="basis-1/5 sm:basis-full" justify="start">
 				<NavbarBrand className="gap-3 max-w-fit">
 					<NextLink className="flex justify-start items-center gap-1" href="/">
-						<Logo />
-						<p className="font-bold text-inherit">ACME</p>
+						<p className="font-bold text-inherit">Rate This Spot</p>
 					</NextLink>
 				</NavbarBrand>
 				<div className="hidden lg:flex gap-4 justify-start ml-2">
@@ -117,13 +114,13 @@ export const Navbar = () => {
       <NavbarMenu>
 				{searchInput}
 				<div className="mx-4 mt-2 flex flex-col gap-2">
-					{siteConfig.navMenuItems.map((item, index) => (
+					{siteConfig.navItems.map((item, index) => (
 						<NavbarMenuItem key={`${item}-${index}`}>
 							<Link
 								color={
 									index === 2
 										? "primary"
-										: index === siteConfig.navMenuItems.length - 1
+										: index === siteConfig.navItems.length - 1
 										? "danger"
 										: "foreground"
 								}
