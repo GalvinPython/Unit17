@@ -93,7 +93,7 @@ export const Navbar = () => {
 									index === 2
 										? "primary"
 										: index === siteConfig.navItems.length - 1
-											? "danger"
+											? "success"
 											: "foreground"
 								}
 								href="#"
