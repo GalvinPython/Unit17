@@ -5,10 +5,22 @@ import { FaCircleCheck } from 'react-icons/fa6'
 import { useLocalStorage } from "usehooks-ts";
 import crypto from 'crypto'
 import { KeyTypes } from "@/types";
-import { Card, CardBody, Input } from "@nextui-org/react";
+import { Card, CardBody, Input, Textarea } from "@nextui-org/react";
 
 export default function IndexPage() {
 	const [value, setValue] = useLocalStorage<KeyTypes>('review-data')
+
+	const handleImageUpload = async (event: any) => {
+		const file = event.target.files[0];
+		const reader = new FileReader();
+
+		reader.onload = (e) => {
+			const base64Image = e.target?.result;
+			console.log('Base64 image:', base64Image);
+		};
+
+		reader.readAsDataURL(file); // Read the file as base64
+	};
 
 	return (
 		<DefaultLayout>
@@ -26,39 +38,37 @@ export default function IndexPage() {
 					<Card>
 						<CardBody>
 							<Input
-								key="outside-left"
+								isRequired
 								type="input"
 								label="Title"
-								labelPlacement="outside-left"
-								placeholder="Enter your title"
+								defaultValue=""
+								className="min-w-[90%]"
 							/>
 							<Input
-								key="outside-left"
+								isRequired
 								type="input"
 								label="Location"
-								labelPlacement="outside-left"
-								placeholder="Enter your title"
+								defaultValue=""
+								className="min-w-[90%] pt-4"
 							/>
-							<Input
-								key="outside-left"
+							<Textarea
+								isRequired
 								type="input"
-								label="Description"
-								labelPlacement="outside-left"
-								placeholder="Enter your title"
+								label="Your Review"
+								defaultValue=""
+								className="min-w-[90%] pt-4"
 							/>
 							<Input
-								key="outside-left"
+								isRequired
 								type="input"
 								label="Rating"
-								labelPlacement="outside-left"
-								placeholder="Enter your title"
+								defaultValue=""
+								className="min-w-[90%] pt-4"
 							/>
-							<Input
-								key="outside-left"
-								type="input"
-								label="Image Upload"
-								labelPlacement="outside-left"
-								placeholder="Enter your title"
+							<input
+								type="file"
+								accept="image/*"
+								onChange={handleImageUpload}
 							/>
 						</CardBody>
 					</Card>
