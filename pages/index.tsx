@@ -3,8 +3,12 @@ import { button as buttonStyles } from "@nextui-org/theme";
 import { title, subtitle } from "@/components/primitives";
 import DefaultLayout from "@/layouts/default";
 import { FaCirclePlus } from 'react-icons/fa6'
+import { useLocalStorage } from "usehooks-ts";
+import { KeyTypes } from "@/types";
 
 export default function IndexPage() {
+	const [value, setValue] = useLocalStorage<KeyTypes[]>('review-data', []);
+
 	return (
 		<DefaultLayout>
 			<section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
@@ -32,6 +36,25 @@ export default function IndexPage() {
 				<div className="mt-4">
 					<h4 className={subtitle({ class: "mt-4" })}>All your reviewed places!</h4>
 				</div>
+
+				<div>
+					{value.map((item, index) => (
+						<div key={index} className="py-2">
+							<h2 className="text-xl font-semibold">{item.title}</h2>
+							<p className="text-gray-600">{item.location}</p>
+							<p className="text-gray-500">{item.description}</p>
+							<p className="text-gray-400">{item.location}</p>
+							<p className="text-gray-300">{item.rating}</p>
+							<p className="text-gray-200">{item.dateAdded}</p>
+							{/* eslint-disable-next-line @next/next/no-img-element */}
+							<img
+								src={item.thumbnail}
+								alt={`Picture of ${item.title}`}
+							/>
+						</div>
+					))}
+				</div>
+
 			</section>
 		</DefaultLayout>
 	);
