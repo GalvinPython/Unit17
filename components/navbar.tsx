@@ -1,5 +1,4 @@
 import {
-	Button,
 	Kbd,
 	Link,
 	Input,
