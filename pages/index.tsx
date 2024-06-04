@@ -5,6 +5,7 @@ import DefaultLayout from "@/layouts/default";
 import { FaCirclePlus } from 'react-icons/fa6'
 import { useLocalStorage } from "usehooks-ts";
 import { KeyTypes } from "@/types";
+import Image from "next/image";
 
 export default function IndexPage() {
 	const [value, setValue] = useLocalStorage<KeyTypes[]>('review-data', []);
