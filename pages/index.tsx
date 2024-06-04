@@ -2,10 +2,9 @@ import { Link } from "@nextui-org/link";
 import { button as buttonStyles } from "@nextui-org/theme";
 import { title, subtitle } from "@/components/primitives";
 import DefaultLayout from "@/layouts/default";
-import { FaCirclePlus } from 'react-icons/fa6'
+import { FaCirclePlus, FaReadme } from 'react-icons/fa6'
 import { useLocalStorage } from "usehooks-ts";
 import { KeyTypes } from "@/types";
-import Image from "next/image";
 
 export default function IndexPage() {
 	const [value, setValue] = useLocalStorage<KeyTypes[]>('review-data', []);
@@ -42,11 +41,21 @@ export default function IndexPage() {
 					{value.map((item, index) => (
 						<div key={index} className="py-2">
 							<h2 className="text-xl font-semibold">{item.title}</h2>
-							<p className="text-gray-600">{item.location}</p>
-							<p className="text-gray-500">{item.description}</p>
-							<p className="text-gray-400">{item.location}</p>
-							<p className="text-gray-300">{item.rating}</p>
-							<p className="text-gray-200">{item.dateAdded}</p>
+							<p className="text-gray-300">{item.description}</p>
+							<p className="text-gray-400">Location: {item.location}</p>
+							<p className="text-gray-500">Rating: {item.rating}/5</p>
+							<p className="text-gray-600">Added: {new Date(item.dateAdded).toLocaleString()}</p>
+							<Link
+								href={`/review?hash=${item.hash}`}
+								className={buttonStyles({
+									color: "success",
+									radius: "full",
+									variant: "shadow",
+								})}
+							>
+								<FaReadme size={20} />
+								Read full review 
+							</Link>
 							{/* eslint-disable-next-line @next/next/no-img-element */}
 							<img
 								src={item.thumbnail}
@@ -55,7 +64,6 @@ export default function IndexPage() {
 						</div>
 					))}
 				</div>
-
 			</section>
 		</DefaultLayout>
 	);
