@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Link } from "@nextui-org/link";
 import { button as buttonStyles } from "@nextui-org/theme";
 import { title, subtitle } from "@/components/primitives";
@@ -8,6 +9,16 @@ import { KeyTypes } from "@/types";
 
 export default function IndexPage() {
 	const [value, setValue] = useLocalStorage<KeyTypes[]>('review-data', []);
+	const [mounted, setMounted] = useState(false);
+
+	// Ensure component only renders on the client side after it's mounted
+	useEffect(() => {
+		setMounted(true);
+	}, []);
+
+	if (!mounted) {
+		return null; // Render nothing on the server
+	}
 
 	return (
 		<DefaultLayout>
