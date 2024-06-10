@@ -9,6 +9,7 @@ export type KeyTypes = {
 	hash: string;
 	title: string;
 	location: string;
+	descriptionShort: string;
 	description: string;
 	rating: number;
 	thumbnail: string;

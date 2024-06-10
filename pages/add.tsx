@@ -49,10 +49,11 @@ export default function IndexPage() {
 		}
 
 		// Test data
-		const exampleObject: KeyTypes = {
+		const dataToAdd: KeyTypes = {
 			hash: crypto.randomBytes(20).toString('hex'),
 			title: reviewTitle,
 			location: reviewLocation,
+			descriptionShort: reviewDescription.length > 100 ? reviewDescription.slice(0, 100) + '...' : reviewDescription,
 			description: reviewDescription,
 			rating: Number(reviewRating),
 			thumbnail: reviewBase64Image,
@@ -60,7 +61,7 @@ export default function IndexPage() {
 		};
 
 		// Add the new data to the key
-		setValue(value ? [...value, exampleObject] : [exampleObject])
+		setValue(value ? [...value, dataToAdd] : [dataToAdd])
 
 		// Clear input fields after adding the place
 		setReviewTitle('');

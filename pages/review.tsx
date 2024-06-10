@@ -34,7 +34,21 @@ export default function IndexPage() {
 				</div>
 				{value.map((item, index) => {
 					if (item.hash === hashQuery) {
-						return (<h1 className={subtitle({ class: "mt-4" })} key={index}>{item.title}</h1>);
+						return (
+							<div key={index} className="max-w-[90dvw] text-wrap">
+								<h1 className={subtitle({ class: "mt-4" })}>{item.title}</h1>
+								<p className="mb-2">{item.description}</p>
+								<p className="mb-1">Location: {item.location}</p>
+								<p className="mb-1">Rating: {item.rating}/5</p>
+								<p className="mb-4">Added: {new Date(item.dateAdded).toLocaleString()}</p>
+								{/* eslint-disable-next-line @next/next/no-img-element */}
+								<img
+									src={item.thumbnail}
+									alt={`Picture of ${item.title}`}
+									className="w-full h-auto mt-4 rounded-lg shadow-md"
+								/>
+							</div>
+						);
 					} else {
 						return null;
 					}
