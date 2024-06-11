@@ -115,7 +115,7 @@ export default function IndexPage() {
 							<Input
 								isRequired
 								type="input"
-								label="Rating"
+								label="Rating (1-5)"
 								value={reviewRating}
 								onChange={(e) => setReviewRating(e.target.value)}
 								className="min-w-[90%] pt-4"

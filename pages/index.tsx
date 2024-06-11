@@ -49,29 +49,36 @@ export default function IndexPage() {
 				</div>
 
 				<div className="container mx-auto p-4">
-					{value.map((item, index) => (
-						<div key={index} className="bg-slate-300 bg-opacity-20 backdrop-filter backdrop-blur-lg shadow-md rounded-lg p-6 mb-6">
-							<h2 className="text-2xl font-boldmb-2">{item.title}</h2>
-							<p className="mb-2">{item.descriptionShort}</p>
-							<p className="mb-1">Location: {item.location}</p>
-							<p className="mb-1">Rating: {item.rating}/5</p>
-							<p className="mb-4">Added: {new Date(item.dateAdded).toLocaleString()}</p>
-							<Link
-								href={`/review?hash=${item.hash}`}
-								className="inline-flex items-center bg-green-500 text-white font-semibold py-2 px-4 rounded-full shadow-lg hover:bg-green-600 transition duration-300 ease-in-out"
-							>
-								<FaReadme size={20} className="mr-2" />
-								Read full review
-							</Link>
-							{/* eslint-disable-next-line @next/next/no-img-element */}
-							<img
-								src={item.thumbnail}
-								alt={`Picture of ${item.title}`}
-								className="w-full h-auto mt-4 rounded-lg shadow-md"
-							/>
+					{value.length === 0 ? (
+						<div className="text-center">
+							<h2 className="font-bold">No reviews yet? How about you start reviewing!</h2>
 						</div>
-					))}
+					) : (
+						value.map((item, index) => (
+							<div key={index} className="bg-slate-300 bg-opacity-20 backdrop-filter backdrop-blur-lg shadow-md rounded-lg p-6 mb-6">
+								<h2 className="text-2xl font-bold mb-2">{item.title}</h2>
+								<p className="mb-2">{item.descriptionShort}</p>
+								<p className="mb-1">Location: {item.location}</p>
+								<p className="mb-1">Rating: {item.rating}/5</p>
+								<p className="mb-4">Added: {new Date(item.dateAdded).toLocaleString()}</p>
+								<Link
+									href={`/review?hash=${item.hash}`}
+									className="inline-flex items-center bg-green-500 text-white font-semibold py-2 px-4 rounded-full shadow-lg hover:bg-green-600 transition duration-300 ease-in-out"
+								>
+									<FaReadme size={20} className="mr-2" />
+									Read full review
+								</Link>
+								{/* eslint-disable-next-line @next/next/no-img-element */}
+								<img
+									src={item.thumbnail}
+									alt={`Picture of ${item.title}`}
+									className="w-full h-auto mt-4 rounded-lg shadow-md"
+								/>
+							</div>
+						))
+					)}
 				</div>
+
 			</section>
 		</DefaultLayout>
 	);
